@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Authenticator
@@ -23,8 +24,21 @@ namespace Authenticator
             host.AddServiceEndpoint(typeof(AuthenticatorInterface), tcp, "net.tcp://0.0.0.0:8100/AuthenticationService");
             //And open the host for business!
             host.Open();
-            //Hold the server open until someone does something
-            Console.WriteLine("System Online");
+            Console.WriteLine("System is online");
+
+            AuthenticationServer authenticator = new AuthenticationServer();
+            Thread clock = new Thread(authenticator.clearTokens);
+
+            Console.WriteLine("Enter number of minutes to clear the Tokens: ");
+            string min = Console.ReadLine();
+            int mins = Convert.ToInt32(min);
+            
+            authenticator.setMinutes(mins);
+            Console.WriteLine("Tokens clearing set to "+mins+" minutes");
+
+            clock.IsBackground = true; 
+            clock.Start(); 
+
             Console.ReadLine();
             //Close the host
             host.Close();
