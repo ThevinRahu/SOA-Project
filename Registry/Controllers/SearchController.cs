@@ -27,16 +27,24 @@ namespace Registry.Controllers
             {
                 /*while ((reader.ReadLine()) != null)
                 {
-                    
+                    //deserialize the object 
+                    Service service = javaScriptSerializer.Deserialize<Service>(reader.ReadLine());
+                    //if the name is equal to the name that user entered
+                    if(service.name == word)
+                    {
+                        service(service)
+                }
+            }
+            sr.Close();
 
                 } */
                 List<string> lines = new List<string>();
                 lines = File.ReadAllLines(servicelocation).ToList();
                 List<string> data = new List<string>();
-                for (int i = 0; i < lines.Count; i = ++i * 7)
+                for (int i = 0; i < lines.Count; i++)
                 {
-                    Service services = JsonConvert.DeserializeObject<Service>(lines[i+1]);
-                    if (services.description.Contains(description))
+                    Service services = JsonConvert.DeserializeObject<Service>(lines[i]);
+                    if (services.name.Contains(description))
                     {
                         data.Add(JsonConvert.SerializeObject(services));
                     }

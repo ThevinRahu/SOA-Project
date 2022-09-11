@@ -23,5 +23,8 @@ namespace Registry.Models
                 this.operandType = operandType;
             }
 
+        public Service()
+        {
         }
+    }
     }
