@@ -18,7 +18,7 @@ namespace Registry.Controllers
         AuthenticatorInterface iserverChannel;
         public IHttpActionResult Get(int token)
         {
-            string servicelocation = Directory.GetCurrentDirectory() + @"..\..\Services\services.txt";
+            string servicelocation = @"..\..\Services\services.txt";
             StreamReader reader = new StreamReader(servicelocation);
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);
