@@ -23,7 +23,7 @@ namespace Registry.Controllers
             Service services = JsonConvert.DeserializeObject<Service>(description);
 
 
-            string servicelocation = Directory.GetCurrentDirectory() + @"..\..\Services\services.txt";
+            string servicelocation = @"..\..\Services\services.txt";
 
             iserverChannel = iChannel.generateChannel();
 
