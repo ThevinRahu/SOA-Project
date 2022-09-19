@@ -30,7 +30,7 @@ namespace ConsoleApplication
                     int option = 1;
                     while (option != 3)
                     {
-                        option = serviceMenue();
+                        option = serviceMenu();
                         if (option == 1)
                         {
                             PublishService();
@@ -68,17 +68,7 @@ namespace ConsoleApplication
             }
                        
         }
-
-       
-        public static int serviceMenue()
-        {
-            Console.WriteLine("===== Select a Service =====");
-            Console.WriteLine("1.Publish a service.\n2.Unpublish a service\n3.logout");
-            Console.WriteLine("Select an option (1/2/3):");
-            int option = Convert.ToInt32(Console.ReadLine());
-            return option;
-        }
-        
+             
         public static int InitialMenu()
         {
             InterfaceChannel iChannel = new InterfaceChannel();
@@ -87,56 +77,66 @@ namespace ConsoleApplication
             Console.WriteLine("Would you like to : \n1.Register\n2.Login\n3.Exit");
             Console.WriteLine("Enter Your Selection (1/2/3) :");
             int selection = Convert.ToInt32(Console.ReadLine());
-            if (selection == 1)
+            switch (selection)
             {
-                Console.WriteLine("Please Enter Your Name : ");
-                string Name = Console.ReadLine();
-                Console.WriteLine("Please Enter your Password: ");
-                string pwd = Console.ReadLine();
-                iserverChannel = iChannel.generateChannel();
-                
-                string result = iserverChannel.Register(Name, pwd);
-                if (result.Equals("Succesfully registered"))
-                {
-                    Console.WriteLine("User Registered");
-                    int token = iserverChannel.Login(Name, pwd);
-                    return token;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            else if (selection == 2)
-            {
-                Console.WriteLine("Please Enter Your Name : ");
-                string Name = Console.ReadLine();
-                Console.WriteLine("Please Enter your Password: ");
-                string pwd = Console.ReadLine();
-                iserverChannel = iChannel.generateChannel();
-                int token = iserverChannel.Login(Name, pwd);
-                if (token > 0)
-                {
-                    Console.WriteLine("User " + Name + " Has Logged in");
-                    return token;
-                }
-                else
-                {
+                case 1:
+                    Console.WriteLine("Please Enter Your Name : ");
+                    string Name = Console.ReadLine();
+                    Console.WriteLine("Please Enter your Password: ");
+                    string pwd = Console.ReadLine();
+                    iserverChannel = iChannel.generateChannel();
+                    int token;
+                    string result = iserverChannel.Register(Name, pwd);
+                    if (result.Equals("Succesfully registered"))
+                    {
+                        Console.WriteLine("User Registered");
+                        token = iserverChannel.Login(Name, pwd);
+                        return token;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
 
-                    return 0;
-                }
+                case 2:
 
+                    Console.WriteLine("Please Enter Your Name : ");
+                    Name = Console.ReadLine();
+                    Console.WriteLine("Please Enter your Password: ");
+                    pwd = Console.ReadLine();
+                    iserverChannel = iChannel.generateChannel();
+                    token = iserverChannel.Login(Name, pwd);
+                    if (token > 0)
+                    {
+                        Console.WriteLine("User " + Name + " Has Logged in");
+                        return token;
+                    }
+                    else
+                    {
+
+                        return 0;
+                    }
+
+
+                case 3:
+
+                    Console.WriteLine("Exiting Portal ...");
+                    return -98;
+
+                default:
+                    Console.WriteLine("Invalid Selection Please try again");
+                    return -99;
             }
-            else if (selection == 3) 
-            {
-                Console.WriteLine("Exiting Portal ...");
-                return -98;
-            }
-            else
-            {
-                Console.WriteLine("Invalid Selection Please try again");
-                return -99;
-            }
+            
+        }
+
+        public static int serviceMenu()
+        {
+            Console.WriteLine("===== Select a Service =====");
+            Console.WriteLine("1.Publish a service.\n2.Unpublish a service\n3.logout");
+            Console.WriteLine("Select an option (1/2/3):");
+            int option = Convert.ToInt32(Console.ReadLine());
+            return option;
         }
         public static void unpublishService()
         {
