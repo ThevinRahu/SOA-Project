@@ -23,7 +23,7 @@ namespace Registry.Controllers
             Service services = JsonConvert.DeserializeObject<Service>(description);
 
 
-            string servicelocation = @"..\..\Services\services.txt";
+            string servicelocation = @"D:\Downloads\VS\ThevinRahu\Services\services.txt";
 
             iserverChannel = iChannel.generateChannel();
 
@@ -31,7 +31,7 @@ namespace Registry.Controllers
 
             if (validateResult == "Validated")
             {
-                using (StreamWriter sw = new StreamWriter(servicelocation))
+                using (StreamWriter sw = new StreamWriter(servicelocation, append: true))
                 {
                     sw.WriteLine(description);
                     sw.Close();
