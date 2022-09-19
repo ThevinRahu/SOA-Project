@@ -32,6 +32,7 @@ namespace Authenticator
                 
                 if (lines == null)
                 {
+                    reader.Close();
                     break;
                 }
                 else 
@@ -52,11 +53,12 @@ namespace Authenticator
                             sw.WriteLine(token);
                             sw.Close();
                         }
-
+                        reader.Close();
                         return token;
                     }
                 }
             }
+            reader.Close();
             return -99;
         }
 
@@ -83,6 +85,7 @@ namespace Authenticator
 
                     if (words[0] == name && words[1] == password)
                     {
+                        reader.Close();
                         return "The username already exists in the system";
                     }
                 }
@@ -93,16 +96,18 @@ namespace Authenticator
 
             try
             {
+                //using (FileStream fs = new FileStream(@"\logs\register.txt",FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
                 using (StreamWriter sw = new StreamWriter(reglocation, append: true))
                 {
                     sw.WriteLine(name + " " + password);
+                    sw.Flush();
                     sw.Close();
                 }
-
                 return "Succesfully registered";
             }
             catch (IOException e)
             {
+                Console.WriteLine(e.Message);
                 return "Registration failure";
             }
 
