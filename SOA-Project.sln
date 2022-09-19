@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry", "Registry\Regist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceProvider", "ServiceProvider\ServiceProvider.csproj", "{C3AFBA41-7CA7-45EC-976B-0247FB6B62EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{871CA7D1-11D2-4658-A20B-1E28A028FE04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C3AFBA41-7CA7-45EC-976B-0247FB6B62EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AFBA41-7CA7-45EC-976B-0247FB6B62EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3AFBA41-7CA7-45EC-976B-0247FB6B62EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871CA7D1-11D2-4658-A20B-1E28A028FE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871CA7D1-11D2-4658-A20B-1E28A028FE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871CA7D1-11D2-4658-A20B-1E28A028FE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871CA7D1-11D2-4658-A20B-1E28A028FE04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

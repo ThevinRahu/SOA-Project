@@ -18,13 +18,13 @@ namespace Registry.Controllers
         AuthenticatorInterface iserverChannel;
         public IHttpActionResult Get(string endpoint, int token)
         {
-            string servicelocation = @"..\..\Services\services.txt";
-            StreamReader reader = new StreamReader(servicelocation);
+            //StreamReader reader = new StreamReader(servicelocation);
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);
 
             if (validateResult == "Validated")
             {
+                string servicelocation = @"D:\Downloads\VS\ThevinRahu\Services\services.txt";
                 List<string> lines = new List<string>();
                 lines = File.ReadAllLines(servicelocation).ToList();
                 List<Service> data = new List<Service>();

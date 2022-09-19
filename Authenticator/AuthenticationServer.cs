@@ -26,26 +26,35 @@ namespace Authenticator
             string reglocation = Directory.GetCurrentDirectory() + @"\logs\register.txt";
             StreamReader reader = new StreamReader(reglocation);
 
-            while ((reader.ReadLine()) != null)
+            while ((File.ReadAllText(reglocation)) != null)
             {
                 string lines = reader.ReadLine();
-                if (lines.Contains(name + " " + password))
+                
+                if (lines == null)
                 {
+                    break;
+                }
+                else 
+                {
+                    //to split the string and remove the space in the string
+                    var words = lines.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
 
-
-                    Random random = new Random();
-                    int token = random.Next(0, 99999);
-
-                    string tokenlocation = Directory.GetCurrentDirectory() + @"\logs\tokens.txt";
-
-                    using (StreamWriter sw = File.AppendText(tokenlocation))
+                    if (words[0] == name && words[1] == password)
                     {
-                        sw.WriteLine(token);
-                        sw.Close();
+
+                        Random random = new Random();
+                        int token = random.Next(0, 99999);
+
+                        string tokenlocation = Directory.GetCurrentDirectory() + @"\logs\tokens.txt";
+
+                        using (StreamWriter sw = File.AppendText(tokenlocation))
+                        {
+                            sw.WriteLine(token);
+                            sw.Close();
+                        }
+
+                        return token;
                     }
-
-                    return token;
-
                 }
             }
             return -99;
@@ -57,23 +66,34 @@ namespace Authenticator
             
             string reglocation = Directory.GetCurrentDirectory() + @"\logs\register.txt";
             StreamReader reader = new StreamReader(reglocation);
-            
-            //read the text file line by line until its null
-            while ((reader.ReadLine()) != null)
+
+            //read the text file and check if it is null
+            while (File.ReadAllText(reglocation) != null)
             {
                 string lines = reader.ReadLine();
-                if(lines.Contains(name + " " + password))
+                //read the text file line by line until its null
+                if (lines == null)
                 {
-                    return "The username already exists in the system";
+                    break;
                 }
-                
+                else 
+                {
+                    //to split the string and remove the space in the string
+                    var words = lines.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+
+                    if (words[0] == name && words[1] == password)
+                    {
+                        return "The username already exists in the system";
+                    }
+                }
+
             }
 
             reader.Close();
 
             try
             {
-                using (StreamWriter sw = File.AppendText(reglocation))
+                using (StreamWriter sw = new StreamWriter(reglocation, append: true))
                 {
                     sw.WriteLine(name + " " + password);
                     sw.Close();
@@ -94,10 +114,14 @@ namespace Authenticator
             StreamReader reader = new StreamReader(tokenlocation);
             
             
-            while ((reader.ReadLine()) != null)
+            while (File.ReadAllText(tokenlocation) != null)
             {
                 string lines = reader.ReadLine();
-                if (lines.Contains(""+token))
+                if (lines == null)
+                {
+                    break;
+                }
+                else if (lines.Contains(""+token))
                 {
                     return "Validated";
                 }
