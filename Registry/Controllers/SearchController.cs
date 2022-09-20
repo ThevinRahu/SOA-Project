@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Utilities;
 
 namespace Registry.Controllers
 {
@@ -18,7 +19,7 @@ namespace Registry.Controllers
         AuthenticatorInterface iserverChannel;
         public IHttpActionResult Post([FromBody] string description, [FromUri()] int token)
         {
-            string servicelocation = @"..\..\Services\services.txt";
+            string servicelocation = Paths.SERVICES_FILE_PATH;
             StreamReader reader = new StreamReader(servicelocation);
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);

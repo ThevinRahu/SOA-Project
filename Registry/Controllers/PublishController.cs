@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Utilities;
 
 namespace Registry.Controllers
 {
@@ -23,7 +24,7 @@ namespace Registry.Controllers
             Service services = JsonConvert.DeserializeObject<Service>(description);
 
 
-            string servicelocation = @"D:\Downloads\VS\ThevinRahu\Services\services.txt";
+            string servicelocation = Paths.SERVICES_FILE_PATH;
 
             iserverChannel = iChannel.generateChannel();
 

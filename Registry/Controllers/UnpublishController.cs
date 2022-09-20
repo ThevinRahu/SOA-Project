@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Utilities;
 
 namespace Registry.Controllers
 {
@@ -24,7 +25,7 @@ namespace Registry.Controllers
 
             if (validateResult == "Validated")
             {
-                string servicelocation = @"D:\Downloads\VS\ThevinRahu\Services\services.txt";
+                string servicelocation = Paths.SERVICES_FILE_PATH;
                 List<string> lines = new List<string>();
                 lines = File.ReadAllLines(servicelocation).ToList();
                 List<Service> data = new List<Service>();

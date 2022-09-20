@@ -255,6 +255,10 @@
       <Project>{6666807A-0F91-4445-BF82-A7339F4C1A0C}</Project>
       <Name>Authenticator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{5F83E409-087B-4773-BA6D-FF7CF99A24E0}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

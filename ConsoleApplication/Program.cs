@@ -31,30 +31,45 @@ namespace ConsoleApplication
                     while (option != 3)
                     {
                         option = serviceMenu();
-                        if (option == 1)
+                        switch (option)
                         {
-                            PublishService();
-                        }
-                        else if (option == 2)
-                        {
-                            unpublishService();
-                        }
-                        else if (option == 3)
-                        {
-                            token = -1;
-                            break;
+                            case 1:
+                                 publishService();
+                                 continue;
+                        
+                            case 2:
+                                 unpublishService();
+                                continue;
+
+                            case 3:
+                                 token = -1;
+                                Console.WriteLine("==============================================");
+                                Console.WriteLine("User Logged Out");
+                                Console.WriteLine("==============================================\n");
+                                break;
+
+                            default:
+                                Console.WriteLine("==============================================");
+                                Console.WriteLine("Invalid Option!!! Please Try Again !!!");
+                                Console.WriteLine("==============================================\n");
+                                continue;
+
                         }
                     }
                     continue;
                 }
                 else if (token == -1)
                 {
-                    Console.WriteLine("User Regitraton has failed please try again");
+                    Console.WriteLine("==============================================");
+                    Console.WriteLine("User Regitraton Failed!! Please Try Again!!");
+                    Console.WriteLine("==============================================\n");
                     continue;
                 }
                 else if (token == 0)
                 {
-                    Console.WriteLine("Username or password is incorrect please try again!!");
+                    Console.WriteLine("==============================================");
+                    Console.WriteLine("Too Many Incorrect Attempts!!! Please Register Again!!!");
+                    Console.WriteLine("==============================================\n");
                     continue;
                 }
                 else if (token == -98)
@@ -73,8 +88,8 @@ namespace ConsoleApplication
         {
             InterfaceChannel iChannel = new InterfaceChannel();
             AuthenticatorInterface iserverChannel;
-            Console.WriteLine("===== Login / Registration Portal =====");
-            Console.WriteLine("Would you like to : \n1.Register\n2.Login\n3.Exit");
+            Console.WriteLine("===== Login / Registration Portal =====\n");
+            Console.WriteLine("Select an Option : \n1 -> Register\t2 -> Login\t3 -> Exit");
             Console.WriteLine("Enter Your Selection (1/2/3) :");
             int selection = Convert.ToInt32(Console.ReadLine());
             switch (selection)
@@ -89,7 +104,9 @@ namespace ConsoleApplication
                     string result = iserverChannel.Register(Name, pwd);
                     if (result.Equals("Succesfully registered"))
                     {
-                        Console.WriteLine("User Registered");
+                        Console.WriteLine("==============================================");
+                        Console.WriteLine("User Succesfully Registered !!");
+                        Console.WriteLine("==============================================\n");
                         token = iserverChannel.Login(Name, pwd);
                         return token;
                     }
@@ -99,23 +116,31 @@ namespace ConsoleApplication
                     }
 
                 case 2:
-
-                    Console.WriteLine("Please Enter Your Name : ");
-                    Name = Console.ReadLine();
-                    Console.WriteLine("Please Enter your Password: ");
-                    pwd = Console.ReadLine();
-                    iserverChannel = iChannel.generateChannel();
-                    token = iserverChannel.Login(Name, pwd);
-                    if (token > 0)
+                    int count = 0;
+                    while (count < 3)
                     {
-                        Console.WriteLine("User " + Name + " Has Logged in");
-                        return token;
+                        Console.WriteLine("Please Enter Your Name : ");
+                        Name = Console.ReadLine();
+                        Console.WriteLine("Please Enter your Password: ");
+                        pwd = Console.ReadLine();
+                        iserverChannel = iChannel.generateChannel();
+                        token = iserverChannel.Login(Name, pwd);
+                        if (token > 0)
+                        {
+                            Console.WriteLine("==============================================");
+                            Console.WriteLine("Successfully Logged in as " + Name );
+                            Console.WriteLine("==============================================\n");
+                            return token;
+                        }
+                        else
+                        {
+                            Console.WriteLine("==============================================");
+                            Console.WriteLine("Username or password is incorrect!! Please Try Again!!");
+                            Console.WriteLine("==============================================\n");
+                            count++;
+                        }
                     }
-                    else
-                    {
-
-                        return 0;
-                    }
+                    return 0;
 
 
                 case 3:
@@ -124,7 +149,9 @@ namespace ConsoleApplication
                     return -98;
 
                 default:
-                    Console.WriteLine("Invalid Selection Please try again");
+                    Console.WriteLine("==============================================");
+                    Console.WriteLine("\nInvalid Selection Please try again");
+                    Console.WriteLine("==============================================\n");
                     return -99;
             }
             
@@ -132,8 +159,8 @@ namespace ConsoleApplication
 
         public static int serviceMenu()
         {
-            Console.WriteLine("===== Select a Service =====");
-            Console.WriteLine("1.Publish a service.\n2.Unpublish a service\n3.logout");
+            Console.WriteLine("\n===== Select a Service =====\n");
+            Console.WriteLine("1 -> Publish a service\t2 -> Unpublish a service\t3 -> logout");
             Console.WriteLine("Select an option (1/2/3):");
             int option = Convert.ToInt32(Console.ReadLine());
             return option;
@@ -141,7 +168,7 @@ namespace ConsoleApplication
         public static void unpublishService()
         {
             User user = User.Instance;
-            Console.WriteLine("===== Unpublish Portal =====");
+            Console.WriteLine("\n===== Unpublish Portal =====\n");
             Console.WriteLine("Enter Service Endpoint : ");
             string endpoint = Console.ReadLine();
 
@@ -152,18 +179,18 @@ namespace ConsoleApplication
             var response = client.Get(request);
 
             Console.WriteLine("==============================================");
-            Console.WriteLine("Response : " + response.Content.ToString());
+            Console.WriteLine("Service Removed : " + response.Content.ToString());
             Console.WriteLine("==============================================");
         }
 
-        public static void PublishService()
+        public static void publishService()
         {
             /*
              * user inputs are taken which intialises a Services object which then be serialized and sent via the url 
              * and save as a published service in the services.txt file.
              */
             User user = User.Instance;
-            Console.WriteLine("===== Publish Portal =====");
+            Console.WriteLine("\n===== Publish Portal =====\n");
             Console.WriteLine("Enter Name Service : ");
             string name = Console.ReadLine();
             Console.WriteLine("Enter Service Description : ");
@@ -171,10 +198,10 @@ namespace ConsoleApplication
             Console.WriteLine("Enter API Endpoint : ");
             string apiEndPoint = Console.ReadLine();
             Console.WriteLine("Enter Number of Operands : ");
-            int noOperands = Convert.ToInt32(Console.ReadLine());
+            int noOfOperands = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Operand Type");
             string operandType = Console.ReadLine();
-            Services services = new Services(name, desc, apiEndPoint, noOperands, operandType);
+            Services services = new Services(name, desc, apiEndPoint, noOfOperands, operandType);
 
             string json = JsonConvert.SerializeObject(services);
 
@@ -187,7 +214,7 @@ namespace ConsoleApplication
             RestRequest request = new RestRequest().AddJsonBody(JsonConvert.SerializeObject(json));
             RestResponse response = clinet.Post(request);
             Console.WriteLine("==============================================");
-            Console.WriteLine("Data Recived: " + response.Content.ToString());
+            Console.WriteLine("Service Data Added: " + response.Content.ToString());
             Console.WriteLine("==============================================");
         }
         
