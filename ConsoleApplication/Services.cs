@@ -8,12 +8,12 @@ namespace ConsoleApplication
 {
     class Services
     {
-        public Services(string name, string description, string aPIEndPoint, int noOperands, string operandType)
+        public Services(string name, string description, string aPIEndPoint, int noOfOperands, string operandType)
         {
             Name = name;
             Description = description;
             APIEndPoint = aPIEndPoint;
-            NoOperands = noOperands;
+            NoOfOperands = noOfOperands;
             OperandType = operandType;
 
         }
@@ -21,7 +21,7 @@ namespace ConsoleApplication
         public string Name { get; set; }
         public string Description { get; set; }
         public string APIEndPoint { get; set; }
-        public int NoOperands { get; set; }
+        public int NoOfOperands { get; set; }
         public string OperandType { get; set; }
 
 
@@ -39,7 +39,7 @@ namespace ConsoleApplication
         }
         public int getNoOperands()
         {
-            return NoOperands;
+            return NoOfOperands;
         }
         public string getOperandType()
         {

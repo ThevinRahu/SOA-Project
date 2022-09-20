@@ -177,10 +177,10 @@ namespace ConsoleApplication
             Console.WriteLine("Enter API Endpoint : ");
             string apiEndPoint = Console.ReadLine();
             Console.WriteLine("Enter Number of Operands : ");
-            int noOperands = Convert.ToInt32(Console.ReadLine());
+            int noOfOperands = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Operand Type");
             string operandType = Console.ReadLine();
-            Services services = new Services(name, desc, apiEndPoint, noOperands, operandType);
+            Services services = new Services(name, desc, apiEndPoint, noOfOperands, operandType);
 
             string json = JsonConvert.SerializeObject(services);
 
