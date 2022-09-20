@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.util;
+using Utilities;
 
 namespace Authenticator
 {
@@ -23,7 +24,7 @@ namespace Authenticator
 
         public int Login(string name, string password)
         {
-            string reglocation = Directory.GetCurrentDirectory() + @"\logs\register.txt";
+            string reglocation = Directory.GetCurrentDirectory() + Paths.REGISTRY_FILE_PATH;
             StreamReader reader = new StreamReader(reglocation);
 
             while ((File.ReadAllText(reglocation)) != null)
@@ -46,7 +47,7 @@ namespace Authenticator
                         Random random = new Random();
                         int token = random.Next(0, 99999);
 
-                        string tokenlocation = Directory.GetCurrentDirectory() + @"\logs\tokens.txt";
+                        string tokenlocation = Directory.GetCurrentDirectory() + Paths.TOKEN_FILE_PATH;
 
                         using (StreamWriter sw = File.AppendText(tokenlocation))
                         {
@@ -66,7 +67,7 @@ namespace Authenticator
         public string Register(string name, string password)
         {
             
-            string reglocation = Directory.GetCurrentDirectory() + @"\logs\register.txt";
+            string reglocation = Directory.GetCurrentDirectory() + Paths.REGISTRY_FILE_PATH;
             StreamReader reader = new StreamReader(reglocation);
 
             //read the text file and check if it is null
@@ -115,7 +116,7 @@ namespace Authenticator
 
         public string Validate(int token)
         {
-            string tokenlocation = Directory.GetCurrentDirectory() + @"\logs\tokens.txt";
+            string tokenlocation = Directory.GetCurrentDirectory() + Paths.TOKEN_FILE_PATH;
             StreamReader reader = new StreamReader(tokenlocation);
             
             
@@ -124,16 +125,18 @@ namespace Authenticator
                 string lines = reader.ReadLine();
                 if (lines == null)
                 {
+                    reader.Close();
                     break;
                 }
                 else if (lines.Contains(""+token))
                 {
+                    reader.Close();
                     return "Validated";
                 }
 
             }
-            
-                return "Not Validated";
+            reader.Close();
+            return "Not Validated";
             
         }
 
@@ -143,7 +146,7 @@ namespace Authenticator
             {
                 Thread.Sleep(minutes * 60000);
 
-                string tokenlocation = Directory.GetCurrentDirectory() + @"\logs\tokens.txt";
+                string tokenlocation = Directory.GetCurrentDirectory() + Paths.TOKEN_FILE_PATH;
                 using (StreamWriter sw = new StreamWriter(tokenlocation))
                 {
                     sw.WriteLine("");

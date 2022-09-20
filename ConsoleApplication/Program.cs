@@ -31,18 +31,24 @@ namespace ConsoleApplication
                     while (option != 3)
                     {
                         option = serviceMenu();
-                        if (option == 1)
+                        switch (option)
                         {
-                            PublishService();
-                        }
-                        else if (option == 2)
-                        {
-                            unpublishService();
-                        }
-                        else if (option == 3)
-                        {
-                            token = -1;
-                            break;
+                            case 1:
+                                 publishService();
+                                 continue;
+                        
+                            case 2:
+                                 unpublishService();
+                                continue;
+
+                            case 3:
+                                 token = -1;
+                                 break;
+
+                            default:
+                                 Console.WriteLine("Invalid Option!!! Please Try Again !!!");
+                                 continue;
+
                         }
                     }
                     continue;
@@ -108,7 +114,7 @@ namespace ConsoleApplication
                     token = iserverChannel.Login(Name, pwd);
                     if (token > 0)
                     {
-                        Console.WriteLine("User " + Name + " Has Logged in");
+                        Console.WriteLine("Successfully Logged in as " + Name);
                         return token;
                     }
                     else
@@ -156,7 +162,7 @@ namespace ConsoleApplication
             Console.WriteLine("==============================================");
         }
 
-        public static void PublishService()
+        public static void publishService()
         {
             /*
              * user inputs are taken which intialises a Services object which then be serialized and sent via the url 
