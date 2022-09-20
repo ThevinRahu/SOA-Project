@@ -179,7 +179,7 @@ namespace ConsoleApplication
             var response = client.Get(request);
 
             Console.WriteLine("==============================================");
-            Console.WriteLine("Response : " + response.Content.ToString());
+            Console.WriteLine("Service Removed : " + response.Content.ToString());
             Console.WriteLine("==============================================");
         }
 
@@ -214,7 +214,7 @@ namespace ConsoleApplication
             RestRequest request = new RestRequest().AddJsonBody(JsonConvert.SerializeObject(json));
             RestResponse response = clinet.Post(request);
             Console.WriteLine("==============================================");
-            Console.WriteLine("Data Recived: " + response.Content.ToString());
+            Console.WriteLine("Service Data Added: " + response.Content.ToString());
             Console.WriteLine("==============================================");
         }
         
