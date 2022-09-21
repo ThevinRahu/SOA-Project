@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication
+namespace Client
 {
     class Services
     {
@@ -15,14 +15,24 @@ namespace ConsoleApplication
             APIEndPoint = aPIEndPoint;
             NoOfOperands = noOfOperands;
             OperandType = operandType;
-            Status = " ";
-            Reason = " ";
-
+            Status = "";
+            Reason = "";
         }
+
         public Services(string status, string reason)
         {
             Status = status;
             Reason = reason;
+        }
+        public Services()
+        {
+            Name = "";
+            Description = "";
+            APIEndPoint = "";
+            NoOfOperands = 0;
+            OperandType = "";
+            Status = "";
+            Reason = "";
         }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -31,27 +41,5 @@ namespace ConsoleApplication
         public string OperandType { get; set; }
         public string Status { get; set; }
         public string Reason { get; set; }
-
-        public string getName()
-        {
-            return Name;
-        }
-        public string getDesc()
-        {
-            return Description;
-        }
-        public string getEndpoint()
-        {
-            return APIEndPoint;
-        }
-        public int getNoOperands()
-        {
-            return NoOfOperands;
-        }
-        public string getOperandType()
-        {
-            return OperandType;
-        }
     }
 }
-
