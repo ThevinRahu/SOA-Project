@@ -15,9 +15,20 @@ namespace ServiceProvider
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "OneParameter",
+                routeTemplate: "api/{controller}/{num}/{token}",
+                defaults: new { num = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TwoParameters",
+                routeTemplate: "api/{controller}/{num1}/{num2}/{token}",
+                defaults: new { num1 = RouteParameter.Optional, num2 = RouteParameter.Optional }
+            );
+            config.Routes.MapHttpRoute(
+                name: "ThreeParameters",
+                routeTemplate: "api/{controller}/{num1}/{num2}/{num3}/{token}",
+                defaults: new { num1 = RouteParameter.Optional, num2 = RouteParameter.Optional, num3 = RouteParameter.Optional }
             );
         }
     }
