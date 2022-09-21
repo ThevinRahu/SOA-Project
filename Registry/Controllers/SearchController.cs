@@ -17,7 +17,7 @@ namespace Registry.Controllers
     {
         InterfaceChannel iChannel = new InterfaceChannel();
         AuthenticatorInterface iserverChannel;
-        public IHttpActionResult Post([FromBody] string description, [FromUri()] int token)
+        public IHttpActionResult Post([FromUri()] string description, [FromUri()] int token)
         {
             string servicelocation = Paths.SERVICES_FILE_PATH;
             StreamReader reader = new StreamReader(servicelocation);

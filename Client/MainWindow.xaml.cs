@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Authenticator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,14 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+            Main.Content = new Login();
+
         }
+        
     }
 }
+

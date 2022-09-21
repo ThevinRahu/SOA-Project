@@ -23,7 +23,7 @@ namespace ConsoleApplication
              */
             while (token <= 0)
             {
-                token = InitialMenu();
+                token = mainMenu();
                 if (token > 0)
                 {
                     user.setToken(token);
@@ -84,12 +84,12 @@ namespace ConsoleApplication
                        
         }
              
-        public static int InitialMenu()
+        public static int mainMenu()
         {
             InterfaceChannel iChannel = new InterfaceChannel();
             AuthenticatorInterface iserverChannel;
             Console.WriteLine("===== Login / Registration Portal =====\n");
-            Console.WriteLine("Select an Option : \n1 -> Register\t2 -> Login\t3 -> Exit");
+            Console.WriteLine("Select an Option : \n1 -> Register\t2 -> Login\t3 -> Exit\n");
             Console.WriteLine("Enter Your Selection (1/2/3) :");
             int selection = Convert.ToInt32(Console.ReadLine());
             switch (selection)
@@ -98,16 +98,16 @@ namespace ConsoleApplication
                     Console.WriteLine("Please Enter Your Name : ");
                     string Name = Console.ReadLine();
                     Console.WriteLine("Please Enter your Password: ");
-                    string pwd = Console.ReadLine();
+                    string Pwd = Console.ReadLine();
                     iserverChannel = iChannel.generateChannel();
                     int token;
-                    string result = iserverChannel.Register(Name, pwd);
+                    string result = iserverChannel.Register(Name, Pwd);
                     if (result.Equals("Succesfully registered"))
                     {
                         Console.WriteLine("==============================================");
                         Console.WriteLine("User Succesfully Registered !!");
                         Console.WriteLine("==============================================\n");
-                        token = iserverChannel.Login(Name, pwd);
+                        token = iserverChannel.Login(Name, Pwd);
                         return token;
                     }
                     else
@@ -122,9 +122,9 @@ namespace ConsoleApplication
                         Console.WriteLine("Please Enter Your Name : ");
                         Name = Console.ReadLine();
                         Console.WriteLine("Please Enter your Password: ");
-                        pwd = Console.ReadLine();
+                        Pwd = Console.ReadLine();
                         iserverChannel = iChannel.generateChannel();
-                        token = iserverChannel.Login(Name, pwd);
+                        token = iserverChannel.Login(Name, Pwd);
                         if (token > 0)
                         {
                             Console.WriteLine("==============================================");

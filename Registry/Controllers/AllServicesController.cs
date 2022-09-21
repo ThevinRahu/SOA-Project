@@ -26,10 +26,12 @@ namespace Registry.Controllers
 
             if (validateResult == "Validated")
             {
+                reader.Close();
                 return Ok(File.ReadAllLines(servicelocation));
             }
             else
             {
+                reader.Close();
                 AuthFail af = new AuthFail("Denied", "Authentication Error");
                 return Ok(af);
             }
