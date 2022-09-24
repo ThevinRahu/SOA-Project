@@ -20,7 +20,7 @@ namespace Registry.Controllers
         // POST: api/publish
         public IHttpActionResult Post([FromBody] string description, [FromUri()] int token)
         {
-
+            //deserialize json object of description
             Service services = JsonConvert.DeserializeObject<Service>(description);
 
 
@@ -30,8 +30,10 @@ namespace Registry.Controllers
 
             string validateResult = iserverChannel.Validate(token);
 
+            //validate token and send response
             if (validateResult == "Validated")
             {
+                //publish description if token validated
                 using (StreamWriter sw = new StreamWriter(servicelocation, append: true))
                 {
                     sw.WriteLine(description);

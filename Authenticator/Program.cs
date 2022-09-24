@@ -26,17 +26,22 @@ namespace Authenticator
             host.Open();
             Console.WriteLine("System is online");
 
+            //authenticator class define
             AuthenticationServer authenticator = new AuthenticationServer();
+            //set thread to clear tokens
             Thread clock = new Thread(authenticator.clearTokens);
 
+            //take minutes to clear tokens
             Console.WriteLine("Enter number of minutes to clear the Tokens: ");
             string min = Console.ReadLine();
             int mins = Convert.ToInt32(min);
             
+            //set minutes
             authenticator.setMinutes(mins);
             Console.WriteLine("Tokens clearing set to "+mins+" minutes");
 
             clock.IsBackground = true; 
+            //run thread to clear tokens
             clock.Start(); 
 
             Console.ReadLine();

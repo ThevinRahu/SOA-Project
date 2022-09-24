@@ -24,9 +24,11 @@ namespace Registry.Controllers
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);
 
+            //validate token and send response
             if (validateResult == "Validated")
             {
                 reader.Close();
+                //send all services if token validated
                 return Ok(File.ReadAllLines(servicelocation));
             }
             else
