@@ -9,9 +9,9 @@
     <Grid Background="#FFDDD805">
         <TextBlock HorizontalAlignment="Left" Margin="73,30,0,0" TextWrapping="Wrap" Text="Registration" VerticalAlignment="Top" FontSize="30" Width="208" FontWeight="Bold" TextAlignment="Center"/>
         <Label Content="Enter Name :" HorizontalAlignment="Left" Margin="58,93,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-        <TextBox x:Name="namebox" HorizontalAlignment="Center" Height="23" VerticalAlignment="Top" Width="250" Margin="0,122,0,0" TextWrapping="Wrap" FontSize="14"/>
+        <TextBox x:Name="nameBox" HorizontalAlignment="Left" Margin="63,117,0,0" VerticalAlignment="Top" Width="248" Height="24" FontSize="14"/>
         <Label Content="Enter Password :" HorizontalAlignment="Left" Margin="58,144,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="121" FontSize="14"/>
-        <PasswordBox x:Name="pwdbox" HorizontalAlignment="Left" Margin="63,171,0,0" VerticalAlignment="Top" Width="248" Height="24" FontSize="14"/>
+        <PasswordBox x:Name="pwdBox" HorizontalAlignment="Left" Margin="63,170,0,0" VerticalAlignment="Top" Width="248" Height="24" FontSize="14"/>
         <Button x:Name="loginbutton" Content="Register" HorizontalAlignment="Left" Margin="64,212,0,0" VerticalAlignment="Top" Width="100" Click="regClick" Background="#FF00FF35" BorderBrush="Black"/>
     </Grid>
 </Window>

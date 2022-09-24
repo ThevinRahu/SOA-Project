@@ -9,14 +9,8 @@
       Title="ServicePage" Width="870">
 
     <Grid>
-        <TextBox x:Name="searchtxt" HorizontalAlignment="Left" Height="23" Margin="173,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="221"/>
-        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="405,77,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Search"/>
-        <Button x:Name="getAllButton" Content="Get All Services" HorizontalAlignment="Left" Margin="522,78,0,0" VerticalAlignment="Top" Width="137" Height="23" Click="GetAll_Services"/>
-        <Label Content="Services" HorizontalAlignment="Left" Margin="355,6,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="0,225,0,0" VerticalAlignment="Top" Width="800"/>
-        <Button x:Name="logoutButton" Content="Log Out" HorizontalAlignment="Left" Margin="762,23,0,0" VerticalAlignment="Top" Width="75" Click="logout"/>
-        <Label x:Name="userData" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <DataGrid AutoGenerateColumns="False" x:Name="serviceInfo" HorizontalAlignment="Left" Height="134" Margin="10,126,0,0" VerticalAlignment="Top" Width="830" PreviewMouseDoubleClick="servicePreview">
+        <TextBox x:Name="searchtxt" HorizontalAlignment="Left" Height="23" Margin="172,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="221"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="serviceInfo" HorizontalAlignment="Left" Height="134" Margin="10,74,0,0" VerticalAlignment="Top" Width="838" PreviewMouseDoubleClick="servicePreview">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" Width="150"></DataGridTextColumn>
                 <DataGridTextColumn Header="Description" IsReadOnly="True" Binding="{Binding Description}" Width="200"></DataGridTextColumn>
@@ -25,20 +19,32 @@
                 <DataGridTextColumn Header="OperandType" IsReadOnly="True" Binding="{Binding OperandType}" Width="125"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="nameLabel" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="26,287,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="descLabel" Content="" Visibility="Visible" HorizontalAlignment="Left" Margin="358,287,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Background="#FF00FF35" Margin="403,218,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Search"/>
+        <Button x:Name="getAllButton" Content="Get All Services" HorizontalAlignment="Left" Background="#FF00FF35" Margin="521,219,0,0" VerticalAlignment="Top" Width="137" Height="23" Click="GetAll_Services"/>
+        <Label Content="Services" HorizontalAlignment="Left" Margin="355,6,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <Line Stretch="Fill" Stroke="Black" X2="1" Margin="0,186,0,62"/>
+        <Button x:Name="logoutButton" Content="Log Out" HorizontalAlignment="Left" Margin="772,23,0,0" VerticalAlignment="Top" Width="75" Click="logout" Background="#FFF83030"/>
+        <Label x:Name="userName" Content="" HorizontalAlignment="Left" Margin="14,19,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Label x:Name="userToken" Content="" HorizontalAlignment="Left" Margin="14,44,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+
+        <Label x:Name="descLabel" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="26,287,0,0" VerticalAlignment="Top"/>
+
+        <Label x:Name="nameLabel" Content="" Visibility="Visible" HorizontalAlignment="Left" Margin="319,332,0,0" VerticalAlignment="Top" Width="143"/>
         <Label x:Name="endPointLabel" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="193,279,0,0" VerticalAlignment="Top"/>
         <Label x:Name="noOfOperandsLabel" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="340,279,0,0" VerticalAlignment="Top"/>
-        <StackPanel x:Name="panel1" HorizontalAlignment="Left" Height="27" Margin="164,322,0,0" VerticalAlignment="Top" Width="150">
+        <StackPanel x:Name="panel1" HorizontalAlignment="Left" Height="27" Margin="160,291,0,0" VerticalAlignment="Top" Width="80">
             <TextBox Name="txtBox1" Visibility="Hidden" Height="23" TextWrapping="Wrap" Text=""/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="27" Margin="340,322,0,0" VerticalAlignment="Top" Width="150">
+        <StackPanel HorizontalAlignment="Left" Height="27" Margin="299,292,0,0" VerticalAlignment="Top" Width="80">
             <TextBox x:Name="txtBox2" Visibility="Hidden" Height="23" TextWrapping="Wrap" Text="" Margin="0,0,-0.6,0"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="27" Margin="523,322,0,0" VerticalAlignment="Top" Width="150">
+        <StackPanel HorizontalAlignment="Left" Height="27" Margin="440,291,0,0" VerticalAlignment="Top" Width="80">
             <TextBox Name="txtBox3" Visibility="Hidden" Height="23" TextWrapping="Wrap" Text=""/>
         </StackPanel>
-        <Button x:Name="testButton" Visibility="Hidden" Content="Test" HorizontalAlignment="Left" Margin="309,365,0,0" VerticalAlignment="Top" Width="207" Click="Test"/>
-        <ProgressBar x:Name="ProgressBar1" HorizontalAlignment="Left" Height="10" Margin="738,85,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="testButton"  Content="Test" HorizontalAlignment="Left" Background="#FF00FF35" Margin="567,293,0,0" VerticalAlignment="Top" Width="137" Height="23" Click="Test"/>
+        <ProgressBar x:Name="ProgressBar1" HorizontalAlignment="Left" Height="10" Margin="370,252,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="serviceDesc" Content="Service Name :" HorizontalAlignment="Left" Margin="161,332,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
+        <Label x:Name="resultDesc" Content="Result :" HorizontalAlignment="Left" Margin="161,364,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
+        <Label x:Name="result" Content="" Visibility="Visible" HorizontalAlignment="Left" Margin="320,364,0,0" VerticalAlignment="Top" Width="143" Background="White"/>
     </Grid>
 </Page>

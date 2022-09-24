@@ -25,8 +25,9 @@ namespace Client
         
         public MainWindow()
         {
+            //login and service page content is displayed using the Frame element
             InitializeComponent();
-            Main.Content = new Login();
+            mainFrame.Content = new Login();
 
         }
         
