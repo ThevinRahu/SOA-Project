@@ -24,6 +24,7 @@ namespace Registry.Controllers
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);
 
+            //validate token and send response
             if (validateResult == "Validated")
             {
                 /*while ((reader.ReadLine()) != null)
@@ -39,14 +40,19 @@ namespace Registry.Controllers
             sr.Close();
 
                 } */
+
+
                 List<string> lines = new List<string>();
+                //get all services to a list from file
                 lines = File.ReadAllLines(servicelocation).ToList();
                 List<string> data = new List<string>();
                 for (int i = 0; i < lines.Count; i++)
                 {
+                    //search for the serices from list
                     Service services = JsonConvert.DeserializeObject<Service>(lines[i]);
                     if (services.description.Contains(description) && services != null)
                     {
+                        //add to a list of services matched on search
                         data.Add(JsonConvert.SerializeObject(services));
                     }
                     else

@@ -23,10 +23,12 @@ namespace Registry.Controllers
             iserverChannel = iChannel.generateChannel();
             string validateResult = iserverChannel.Validate(token);
 
+            //validate token and send response
             if (validateResult == "Validated")
             {
                 string servicelocation = Paths.SERVICES_FILE_PATH;
                 List<string> lines = new List<string>();
+                //read all lines from file and add to a list
                 lines = File.ReadAllLines(servicelocation).ToList();
                 List<Service> data = new List<Service>();
                 Service services;
@@ -34,12 +36,15 @@ namespace Registry.Controllers
 
                 foreach (string line in lines)
                 {
+                    //add to services list from file
                     services = new Service();
                     services = JsonConvert.DeserializeObject<Service>(line);
                     data.Add(services);
                 }
 
                 lines.Clear();
+
+                //remove the service from the list
                 for (int i = 0; i < data.Count; i++)
                 {
                     if (data[i].apiEndPoint.Equals(endpoint))
@@ -54,6 +59,7 @@ namespace Registry.Controllers
                     string jsonstring = JsonConvert.SerializeObject(data[i]);
                     lines.Add(jsonstring);
                 }
+                //add new list after removing the service to the file
                 File.WriteAllLines(servicelocation, lines);
                 return Ok(removedService);
             }

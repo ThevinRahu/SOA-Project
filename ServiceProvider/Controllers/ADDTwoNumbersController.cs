@@ -21,6 +21,7 @@ namespace ServiceProvider.Controllers
 
             string validateResult = iserverChannel.Validate(token);
 
+            //validate token and send response
             if (validateResult == "Validated")
             {
                 int result = num1 + num2;

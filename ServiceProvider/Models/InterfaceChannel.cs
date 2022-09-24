@@ -10,6 +10,8 @@ namespace ServiceProvider.Models
     public class InterfaceChannel
     {
         private AuthenticatorInterface interfaceChannel;
+
+        //function to connect api with authenticator
         public AuthenticatorInterface generateChannel()
         {
             ChannelFactory<AuthenticatorInterface> channelFactory;
