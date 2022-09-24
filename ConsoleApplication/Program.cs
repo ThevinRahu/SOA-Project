@@ -172,7 +172,6 @@ namespace ConsoleApplication
             Console.WriteLine("Enter Service Endpoint : ");
             string endpoint = Console.ReadLine();
 
-            //API call to unpublish the service with matching endpoint.
             string url = @"http://localhost:14698/api/UnPublish/?endpoint=" + endpoint + "&token=" + user.getToken();
             var client = new RestClient(url);
             var request = new RestRequest();

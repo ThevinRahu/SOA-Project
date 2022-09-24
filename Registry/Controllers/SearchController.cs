@@ -45,16 +45,23 @@ namespace Registry.Controllers
                 for (int i = 0; i < lines.Count; i++)
                 {
                     Service services = JsonConvert.DeserializeObject<Service>(lines[i]);
-                    if (services.name.Contains(description))
+                    if (services.description.Contains(description) && services != null)
                     {
                         data.Add(JsonConvert.SerializeObject(services));
                     }
+                    else
+                    {
+                        reader.Close();
+                        return NotFound();
+                    }
                 }
+                reader.Close();
                 return Ok(data);
             }
             else
             {
                 AuthFail af = new AuthFail("Denied", "Authentication Error");
+                reader.Close();
                 return Ok(af);
             }
 

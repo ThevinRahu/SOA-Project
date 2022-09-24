@@ -22,7 +22,7 @@ namespace Client
                 return instance;
             }
         }
-
+        // Top save the name and token of user to used by the service page and for authentication
         private string name;
         private int token;
 

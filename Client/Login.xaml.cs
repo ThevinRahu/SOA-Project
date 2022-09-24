@@ -22,7 +22,7 @@ namespace Client
     /// </summary>
     public partial class Login : Page
     {
-        AuthenticatorInterface foob;
+        readonly AuthenticatorInterface auth;
         User user;
         public Login()
         {
@@ -30,26 +30,27 @@ namespace Client
             var tcp = new NetTcpBinding();
             var URL = "net.tcp://localhost:8100/AuthenticationService";
             var chanFactory = new ChannelFactory<AuthenticatorInterface>(tcp, URL);
-            foob = chanFactory.CreateChannel();
-
+            auth = chanFactory.CreateChannel();
         }
         
-        //user credentials validation for login and if invlid generate an error message
+        //user credentials validation for login and if invalid generate an error message
         private void loginClick(object sender, RoutedEventArgs e)
         {
             string Name = namebox.Text.Trim();
             string Pwd = pwdbox.Password;
             if (Name.Length == 0 || Pwd.Length == 0)
             {
-                MessageBox.Show("Name or Password Feilds cannot be empty!!");
+                MessageBox.Show("Name or Password Feilds cannot be empty!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                int result = foob.Login(Name, Pwd);
+                // If the user is valid the result will have the token generated and it will be stored in the User Class
+                // After that the user will navigated to the service page.
+                int result = auth.Login(Name, Pwd);
                 if (result > 0)
                 {
                     user = User.Instance;
-                    MessageBox.Show("Logged in Succesfully!!");
+                    MessageBox.Show("Loggedin Succesfully!!");
                     user.setToken(result);
                     user.setName(Name);
                     ServicePage servicePage = new ServicePage();
@@ -57,14 +58,15 @@ namespace Client
                 }
                 else
                 {
-                    MessageBox.Show("Dont have an Account!! Please Create an Account", Title = "Login Error");
+                    //error message if no account is found
+                    MessageBox.Show("Dont have an Account!!, Please Create an Account", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     namebox.Clear();
                     pwdbox.Clear();
                 }
             }
         }
         
-
+        //opens a seperate window to register
         private void registration(object sender, RoutedEventArgs e)
         {
             Registration reg = new Registration();

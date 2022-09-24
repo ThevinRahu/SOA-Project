@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="SOA Project Window" Height="450" Width="870" >
     <Grid Background="#FFDDD805">
-        <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
