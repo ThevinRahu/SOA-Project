@@ -15,7 +15,7 @@ namespace Utilities
         public static readonly string TOKEN_FILE_PATH = @"\logs\tokens.txt";
 
         //default location  : D:\Downloads\VS\ThevinRahu\SOA-Project\Services
-        public static readonly string SERVICES_FILE_PATH = @"D:\Downloads\VS\ThevinRahu\SOA-Project\Services\services.txt";
+        public static readonly string SERVICES_FILE_PATH = @"D:\Downloads\Assignment1Part2\SOA-Project\Services\services.txt";
 
     }
 }

@@ -53,6 +53,8 @@ namespace Client
             this.NavigationService.Navigate(loginandReg);
         }
 
+       
+
         // The API call is made and all the services will be displayed if the token is valid 
         private void GetAll_Services(object sender, RoutedEventArgs e)
         {
@@ -93,7 +95,52 @@ namespace Client
             {
                 MessageBox.Show("No Available Services!!");
             }
-            
+        }
+
+        // When a service is selected the fields will be made visible based on the selected service
+        private void servicePreview(object sender, MouseButtonEventArgs e)
+        {
+            Services selected = serviceInfo.SelectedItem as Services;
+            if (selected != null)
+            {
+                if (selected.Name == null)
+                {
+                    MessageBox.Show("Selected Feild is Empty", Title = "Empty Feild Selected");
+                }
+                else
+                {
+                    nameLabel.Content = selected.Name;
+                    descLabel.Content = selected.Description;
+                    endPointLabel.Content = selected.APIEndPoint;
+                    noOfOperandsLabel.Content = selected.NoOfOperands;
+                }
+                // Dynamic text fields and test button implementation
+                if (selected.NoOfOperands == 2)
+                {
+                    txtBox1.Visibility = Visibility.Visible;
+                    txtBox2.Visibility = Visibility.Visible;
+                    txtBox3.Visibility = Visibility.Hidden;
+                    testButton.Visibility = Visibility.Visible;
+                }
+                else if (selected.NoOfOperands == 3)
+                {
+                    txtBox1.Visibility = Visibility.Visible;
+                    txtBox2.Visibility = Visibility.Visible;
+                    txtBox3.Visibility = Visibility.Visible;
+                    testButton.Visibility = Visibility.Visible;
+                }
+                else if (selected.NoOfOperands == 1)
+                {
+                    txtBox1.Visibility = Visibility.Visible;
+                    txtBox2.Visibility = Visibility.Hidden;
+                    txtBox3.Visibility = Visibility.Hidden;
+                    testButton.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selected Field is Empty", Title = "Empty Field Selected");
+            }
         }
 
         // When a search string is entered into the text box the matching services will be displayed on the Grid.
@@ -172,51 +219,7 @@ namespace Client
             }
         }
 
-        // When a service is selected the fields will be made visible based on the selected service
-        private void servicePreview(object sender, MouseButtonEventArgs e)
-        {
-            Services selected = serviceInfo.SelectedItem as Services;
-            if (selected != null)
-            {
-                if (selected.Name == null)
-                {
-                    MessageBox.Show("Selected Feild is Empty", Title = "Empty Feild Selected");
-                }
-                else
-                {
-                    nameLabel.Content = selected.Name;
-                    descLabel.Content = selected.Description;
-                    endPointLabel.Content = selected.APIEndPoint;
-                    noOfOperandsLabel.Content = selected.NoOfOperands;
-                }
-                // Dynamic text fields and test button implementation
-                if (selected.NoOfOperands == 2)
-                {
-                    txtBox1.Visibility = Visibility.Visible;
-                    txtBox2.Visibility = Visibility.Visible;
-                    txtBox3.Visibility = Visibility.Hidden;
-                    testButton.Visibility = Visibility.Visible;
-                }
-                else if (selected.NoOfOperands == 3)
-                {
-                    txtBox1.Visibility = Visibility.Visible;
-                    txtBox2.Visibility = Visibility.Visible;
-                    txtBox3.Visibility = Visibility.Visible;
-                    testButton.Visibility = Visibility.Visible;
-                }
-                else if (selected.NoOfOperands == 1)
-                {
-                    txtBox1.Visibility = Visibility.Visible;
-                    txtBox2.Visibility = Visibility.Hidden;
-                    txtBox3.Visibility = Visibility.Hidden;
-                    testButton.Visibility = Visibility.Visible;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selected Field is Empty", Title = "Empty Field Selected");
-            }
-        }
+        
         
         // Invoking the appropriate service and getting the result
         private void Test(object sender, RoutedEventArgs e)

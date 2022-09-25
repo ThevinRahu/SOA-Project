@@ -55,14 +55,17 @@ namespace Registry.Controllers
                         //add to a list of services matched on search
                         data.Add(JsonConvert.SerializeObject(services));
                     }
-                    else
-                    {
-                        reader.Close();
-                        return NotFound();
-                    }
                 }
-                reader.Close();
-                return Ok(data);
+                if (data.Count != 0)
+                {
+                    reader.Close();
+                    return Ok(data);
+                }
+                else
+                {
+                    reader.Close();
+                    return NotFound();
+                }
             }
             else
             {
