@@ -8,14 +8,14 @@ namespace Utilities
 {
     public class Paths
     {
-        // default location : C:\Users\MSI\Desktop\SLIIT\CURTIN\Sem1\DC\assement\DC Assigment 01\Authenticator\bin\Debug
+        // default location : D:\Downloads\VS\ThevinRahu\SOA-Project\Authenticator\bin\Debug\logs
         public static readonly string REGISTRY_FILE_PATH = @"\logs\register.txt";
 
-        //default location : C:\Users\MSI\Desktop\SLIIT\CURTIN\Sem1\DC\assement\DC Assigment 01\Authenticator\bin\Debug
+        //default location  : D:\Downloads\VS\ThevinRahu\SOA-Project\Authenticator\bin\Debug\logs
         public static readonly string TOKEN_FILE_PATH = @"\logs\tokens.txt";
 
-        //default location : C:\Program Files (x86)\IIS Express
-        public static readonly string SERVICES_FILE_PATH = @"D:\Downloads\VS\ThevinRahu\Services\services.txt";
+        //default location  : D:\Downloads\VS\ThevinRahu\SOA-Project\Services
+        public static readonly string SERVICES_FILE_PATH = @"D:\Downloads\VS\ThevinRahu\SOA-Project\Services\services.txt";
 
     }
 }

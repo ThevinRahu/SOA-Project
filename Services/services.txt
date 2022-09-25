@@ -1,0 +1,5 @@
+{"Name":"AddTwoNumbers","Description":"add","APIEndPoint":"http://localhost:1039/api/ADDTwoNumbers","NoOfOperands":2,"OperandType":"Add","Status":" ","Reason":" "}
+{"Name":"ADDTwoNumbers","Description":"add","APIEndPoint":"http://localhost:1039/api/ADDTwoNumbers","NoOfOperands":2,"OperandType":"Add","Status":" ","Reason":" "}
+{"Name":"ADDThreeNumbers","Description":"add","APIEndPoint":"http://localhost:1039/api/ADDThreeNumbers","NoOfOperands":3,"OperandType":"Add","Status":" ","Reason":" "}
+{"Name":"MulTwoNumbers","Description":"multiply","APIEndPoint":"http://localhost:1039/api/MulTwoNumbers","NoOfOperands":2,"OperandType":"Multiply","Status":" ","Reason":" "}
+{"Name":"MulThreeNumbers","Description":"multiply","APIEndPoint":"http://localhost:1039/api/MulThreeNumbers","NoOfOperands":3,"OperandType":"Multiply","Status":" ","Reason":" "}
